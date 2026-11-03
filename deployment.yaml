@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iris-deployment
+  labels:
+    app: iris
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: iris
+  template:
+    metadata:
+      labels:
+        app: iris
+    spec:
+      containers:
+      - name: iris-container
+        image: iris-ml-api:v1
+        imagePullPolicy: Never
+        envFrom:
+        - configMapRef:
+            name: model-config
+        - secretRef:
+            name: model-secret
+        ports:
+        - containerPort: 8000
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 10
+          periodSeconds: 15
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 10
