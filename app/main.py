@@ -1,11 +1,11 @@
 
-import joblib
-import numpy as np
+import hashlib
 import json
 import os
-import hashlib
-import redis
 
+import joblib
+import numpy as np
+import redis
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
@@ -82,7 +82,7 @@ def predict(data: IrisInput):
     except redis.RedisError as e:
         raise HTTPException(
             status_code=503,
-            detail=f"Redis is unavailable: {str(e)}"
+            detail=f"Redis is unavailable: {e!s}"
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
