@@ -31,7 +31,7 @@ jobs:
         run: pytest tests/ -v
 
       - name: Train model and validate accuracy
-        run: python train.py
+        run: python app/train.py
 
       - name: Check model accuracy
         run: python validate.py
