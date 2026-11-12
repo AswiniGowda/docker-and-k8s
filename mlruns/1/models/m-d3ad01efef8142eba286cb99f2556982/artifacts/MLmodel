@@ -1,0 +1,25 @@
+artifact_path: file:///C:/Users/Guess/OneDrive/Documents/MLOps and Gen AI Hands-on/docker
+  and kubernetes/mlruns/1/models/m-d3ad01efef8142eba286cb99f2556982/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.skops
+    predict_fn: predict
+    python_version: 3.11.9
+  sklearn:
+    code: null
+    pickled_model: model.skops
+    serialization_format: skops
+    sklearn_version: 1.9.1
+    skops_trusted_types:
+    - sklearn.tree._tree.Tree
+mlflow_version: 3.18.0
+model_id: m-d3ad01efef8142eba286cb99f2556982
+model_size_bytes: 3656904
+model_uuid: m-d3ad01efef8142eba286cb99f2556982
+prompts: null
+run_id: 554f6b31898340f98c906e15fe13efea
+utc_time_created: '2026-11-06 11:26:24.503666'
